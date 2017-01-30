@@ -1,1 +1,38 @@
 
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "laboon.Fibonacci"
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+  testCompile 'junit:junit:4.12'
+}
+
+task plumbus << {
+   println "A plumbus for you!"
+}
+
+task schleem(dependsOn: plumbus) << {
+   println "schleem has been repurposed"
+}
+
+task grumbo(dependsOn: schleem) << {
+  println "that leaves you with a regular old plumbus"
+}
+
+task monkey << {
+  String x = "monkey"
+  10.times {
+    println x.reverse()
+  }
+}
+
+run {    
+    systemProperties System.getProperties()
+
+    args System.getProperty("args").split()    
+}
